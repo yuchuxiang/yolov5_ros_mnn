@@ -1,0 +1,14 @@
+<launch>
+
+    <arg name="project" default="yolov5"/>
+
+    <!--load the image-->
+    <include file="$(find usb_cam)/launch/usb_cam-test.launch" />
+
+    <!-- Run the yolo -->
+    <node name="yolo_v5" pkg="yolov5_pkg" type="yolov5_pkg_yolo_ros" respawn="false" />
+
+    <!--- Run Rviz-->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find yolov5_pkg)/config/yolo.rviz" required="true"/>
+
+</launch>
